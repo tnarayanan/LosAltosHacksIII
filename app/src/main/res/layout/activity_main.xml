@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/orange"
     tools:context="com.example.lah3.losaltoshacks3.MainActivity">
 
     <Button
         android:id="@+id/createAccount"
-        android:layout_width="291dp"
-        android:layout_height="60dp"
+        android:layout_width="279dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
@@ -18,7 +19,7 @@
         android:text="Create Account"
         android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="@+id/passwordField"
         app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
@@ -28,7 +29,7 @@
         android:layout_height="51dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="252dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"

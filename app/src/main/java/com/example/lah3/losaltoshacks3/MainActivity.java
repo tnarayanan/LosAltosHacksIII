@@ -1,5 +1,6 @@
 package com.example.lah3.losaltoshacks3;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText memailField;
     private EditText mpasswordField;
     private FirebaseAuth mAuth;
+
 
 
     @Override
