@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "143318156934",
+    "firebase_url": "https://losaltoshacks3.firebaseio.com",
+    "project_id": "losaltoshacks3",
+    "storage_bucket": "losaltoshacks3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143318156934:android:d0cc621282146319",
+        "android_client_info": {
+          "package_name": "com.example.lah3.losaltoshacks3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143318156934-m84nfgd1p6hb5gtoceoui0v4mkuvrn08.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lah3.losaltoshacks3",
+            "certificate_hash": "875a8d00355388afe73d4e815013e0f453322005"
+          }
+        },
+        {
+          "client_id": "143318156934-mr7d2d923nt6q1j5lmjfa96abqahmu59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3CfdKyNOrGfXur9LMuR2pZiskY50OaOw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143318156934-mr7d2d923nt6q1j5lmjfa96abqahmu59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
