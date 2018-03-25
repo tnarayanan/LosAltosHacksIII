@@ -19,12 +19,15 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.alamkanak.weekview.WeekViewLoader;
+import com.example.lah3.losaltoshacks3.Backend.UserSchedule;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class WeekViewTest extends AppCompatActivity {
+
+    public static UserSchedule userSchedule = new UserSchedule();
 
     FloatingActionButton fab_add, fab_task, fab_event;
     Animation fab_open, fab_close, rotate_clockwise, rotate_counterclockwise;

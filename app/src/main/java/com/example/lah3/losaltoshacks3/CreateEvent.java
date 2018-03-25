@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.lah3.losaltoshacks3.Backend.Event;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -18,12 +20,14 @@ public class CreateEvent extends AppCompatActivity {
 
     public static ArrayList<String[]> events;
 
+    static String[] event = {"", "", "", "", ""};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
 
-        final String[] task = {"", "", "", "", ""};
+
 
         Button createTheEvent = (Button) findViewById(R.id.createEvent);
         final EditText name = (EditText) findViewById(R.id.name);
@@ -50,8 +54,8 @@ public class CreateEvent extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final String endDateString = endDate.getMonth() + " " + endDate.getDayOfMonth() + " " + endDate.getYear();
-                        task[3] = endDateString;
+                        final String endDateString = endDate.getMonth() + "/" + endDate.getDayOfMonth() + "/" + endDate.getYear();
+                        event[3] = endDateString;
                         endDateField.setText(endDateString);
                     }
                 });
@@ -73,8 +77,8 @@ public class CreateEvent extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final String startDateString = (startDate.getMonth() + 1) + " " + startDate.getDayOfMonth() + " " + startDate.getYear();
-                        task[1] = startDateString;
+                        final String startDateString = (startDate.getMonth() + 1) + "/" + startDate.getDayOfMonth() + "/" + startDate.getYear();
+                        event[1] = startDateString;
                         startDateField.setText(startDateString);
                     }
                 });
@@ -96,8 +100,8 @@ public class CreateEvent extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final String startTimeString = startTime.getHour() + " " + startTime.getMinute();
-                        task[2] = startTimeString;
+                        final String startTimeString = startTime.getHour() + ":" + startTime.getMinute();
+                        event[2] = startTimeString;
                         startTimeField.setText(startTimeString);
                     }
                 });
@@ -119,8 +123,8 @@ public class CreateEvent extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final String endTimeString = endTime.getHour() + " " + endTime.getMinute();
-                        task[4] = endTimeString;
+                        final String endTimeString = endTime.getHour() + ":" + endTime.getMinute();
+                        event[4] = endTimeString;
                         endTimeField.setText(endTimeString);
                     }
                 });
@@ -134,11 +138,38 @@ public class CreateEvent extends AppCompatActivity {
         createTheEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                task[0] = name.getText().toString();
-                events.add(task);
+            event[0] = name.getText().toString();
+            events.add(event);
 
-                Calendar event_end_time = Calendar.getInstance();
-                //event_end_time.set(Calendar.DATE);
+            Calendar eventStartTimeCal = Calendar.getInstance();
+            String[] eventStartTime = event[2].split(":");
+            eventStartTimeCal.set(Calendar.HOUR, Integer.parseInt(eventStartTime[0]));
+            eventStartTimeCal.set(Calendar.MINUTE, Integer.parseInt(eventStartTime[1]));
+
+            String[] eventStartDate = event[1].split("/");
+            eventStartTimeCal.set(Calendar.MONTH, Integer.parseInt(eventStartDate[0]));
+            eventStartTimeCal.set(Calendar.DATE, Integer.parseInt(eventStartDate[1]));
+            eventStartTimeCal.set(Calendar.YEAR, Integer.parseInt(eventStartDate[2]));
+
+            eventStartTimeCal.set(Calendar.MILLISECOND, 0);
+
+
+
+            Calendar eventEndTimeCal = Calendar.getInstance();
+            String[] eventEndTime = event[4].split(":");
+            eventEndTimeCal.set(Calendar.HOUR, Integer.parseInt(eventEndTime[0]));
+            eventEndTimeCal.set(Calendar.MINUTE, Integer.parseInt(eventEndTime[1]));
+
+            String[] eventEndDate = event[3].split("/");
+            eventEndTimeCal.set(Calendar.MONTH, Integer.parseInt(eventEndDate[0]));
+            eventEndTimeCal.set(Calendar.DATE, Integer.parseInt(eventEndDate[1]));
+            eventEndTimeCal.set(Calendar.YEAR, Integer.parseInt(eventEndDate[2]));
+
+            eventEndTimeCal.set(Calendar.MILLISECOND, 0);
+
+            Event eventObj = new Event(event[0], eventStartTimeCal, eventEndTimeCal);
+
+            WeekViewTest.userSchedule.addEvent(eventObj);
             }
         });
 
