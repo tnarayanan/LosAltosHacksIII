@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
@@ -31,6 +32,13 @@ public class CreateEvent extends AppCompatActivity {
         ConstraintLayout startTime = (ConstraintLayout) findViewById(R.id.startTimeLayout);
         ConstraintLayout endTime = (ConstraintLayout) findViewById(R.id.endTimeLayout);
 
+        final TextView startDateField = (TextView) findViewById(R.id.startDateField);
+        final TextView startTimeField = (TextView) findViewById(R.id.startTimeField);
+        final TextView endDateField = (TextView) findViewById(R.id.endDateField);
+        final TextView endTimeField = (TextView) findViewById(R.id.endTimeField);
+
+
+
         endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +52,7 @@ public class CreateEvent extends AppCompatActivity {
                     public void onClick(View view) {
                         final String endDateString = endDate.getMonth() + " " + endDate.getDayOfMonth() + " " + endDate.getYear();
                         task[3] = endDateString;
+                        endDateField.setText(endDateString);
                     }
                 });
 
@@ -66,6 +75,7 @@ public class CreateEvent extends AppCompatActivity {
                     public void onClick(View view) {
                         final String startDateString = (startDate.getMonth() + 1) + " " + startDate.getDayOfMonth() + " " + startDate.getYear();
                         task[1] = startDateString;
+                        startDateField.setText(startDateString);
                     }
                 });
 
@@ -88,6 +98,7 @@ public class CreateEvent extends AppCompatActivity {
                     public void onClick(View view) {
                         final String startTimeString = startTime.getHour() + " " + startTime.getMinute();
                         task[2] = startTimeString;
+                        startTimeField.setText(startTimeString);
                     }
                 });
 
@@ -110,6 +121,7 @@ public class CreateEvent extends AppCompatActivity {
                     public void onClick(View view) {
                         final String endTimeString = endTime.getHour() + " " + endTime.getMinute();
                         task[4] = endTimeString;
+                        endTimeField.setText(endTimeString);
                     }
                 });
 
@@ -126,7 +138,7 @@ public class CreateEvent extends AppCompatActivity {
                 events.add(task);
 
                 Calendar event_end_time = Calendar.getInstance();
-                event_end_time.set(Calendar.DATE);
+                //event_end_time.set(Calendar.DATE);
             }
         });
 
