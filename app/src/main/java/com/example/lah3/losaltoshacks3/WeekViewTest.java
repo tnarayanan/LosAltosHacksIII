@@ -114,8 +114,8 @@ public class WeekViewTest extends AppCompatActivity {
             @Override
             public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
                 if(newMonth == 4){
-                    WeekViewEvent event = new WeekViewEvent(1, "kill ashish", 2018, 3, 25, 0, 0, 2018, 3, 26, 0, 0);
-                    WeekViewEvent event2 = new WeekViewEvent(1, "kill ashish again", 2018, 3, 26, 0, 0, 2018, 3, 27, 0, 0);
+                    WeekViewEvent event = new WeekViewEvent(1, "event1", 2018, 3, 25, 0, 0, 2018, 3, 26, 0, 0);
+                    WeekViewEvent event2 = new WeekViewEvent(1, "event2", 2018, 3, 26, 0, 0, 2018, 3, 27, 0, 0);
 
                     event.setColor(getResources().getColor(R.color.darkOrange));
 
