@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.github.alamkanak:android-week-view-1.2.6">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-week-view-1.2.6.aar/9d8e78ade24089b2a38f096676e1c473/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-week-view-1.2.6.aar/9d8e78ade24089b2a38f096676e1c473/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-week-view-1.2.6.aar/3823fe9d2461a402b692a940f65686ed/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/android-week-view-1.2.6.aar/3823fe9d2461a402b692a940f65686ed/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

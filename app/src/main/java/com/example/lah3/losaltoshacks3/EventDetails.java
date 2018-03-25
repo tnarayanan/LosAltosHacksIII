@@ -15,6 +15,9 @@ public class EventDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
+        name = (TextView) findViewById(R.id.eventName);
+        id = (TextView)findViewById(R.id.eventID);
+       // color = (TextView)findViewById()
 
     }
 }
