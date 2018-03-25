@@ -10,6 +10,9 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,32 +25,45 @@
                 android:id="@+id/datePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="18dp"
-                tools:layout_editor_absoluteY="3dp" />
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="505dp"
-                android:timePickerMode="spinner"/>
+                android:layout_height="213dp"
+                android:layout_marginTop="8dp"
+                android:timePickerMode="spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="348dp"
                 android:layout_height="72dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Enter the end time of your event. Make sure that its a multiple of 15 minutes!"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="435dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
             <Button
                 android:id="@+id/submitStart"
                 android:layout_width="117dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="124dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="8dp"
                 android:text="Submit Beginning Date and Time"
-                tools:layout_editor_absoluteX="124dp"
-                tools:layout_editor_absoluteY="717dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
         </android.support.constraint.ConstraintLayout>
 
