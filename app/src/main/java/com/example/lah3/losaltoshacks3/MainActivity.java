@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MonthLoader.Month
         memailField = (EditText) findViewById(R.id.emailField);
         mpasswordField = (EditText) findViewById(R.id.passwordField);
         mAuth = FirebaseAuth.getInstance();
-        Intent i = new Intent(this, CreateTask.class);
+        Intent i = new Intent(this, CreateEvent.class);
         startActivity(i);
 
     }
