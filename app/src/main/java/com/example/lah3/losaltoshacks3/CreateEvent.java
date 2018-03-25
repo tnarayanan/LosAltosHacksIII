@@ -1,24 +1,19 @@
 package com.example.lah3.losaltoshacks3;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TimePicker;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
 
 public class CreateEvent extends AppCompatActivity {
 
@@ -26,14 +21,7 @@ public class CreateEvent extends AppCompatActivity {
     private  DatePicker datePicker;
     FragmentManager fragmentManager = getFragmentManager();
 
-    public static String[][] events;
-
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(fragmentManager, "tag");
-    }
-
-
+    public static ArrayList<String[]> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +30,8 @@ public class CreateEvent extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        String[] listViewItems = {"Event Name", "Start", "End"};
+        final String[] listViewItems = {"Event Name", "Start", "End"};
+        final String[] task = {"", "", "", "", ""};
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listViewItems);
         listView.setAdapter(adapter);
@@ -53,7 +42,18 @@ public class CreateEvent extends AppCompatActivity {
                 if(i == 0){
 
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(CreateEvent.this);
-                    View mView = getLayoutInflater().inflate(R.layout.item_name, null);
+                    View mView = getLayoutInflater().inflate(R.layout.dialogue_name, null);
+
+                    Button submitName = (Button) mView.findViewById(R.id.submitEventName);
+                    final EditText eventName = (EditText) mView.findViewById(R.id.eventName);
+
+                    submitName.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String name = eventName.getText().toString();
+                            task[0] = name;
+                        }
+                    });
 
                     mBuilder.setView(mView);
                     AlertDialog dialog = mBuilder.create();
@@ -61,8 +61,23 @@ public class CreateEvent extends AppCompatActivity {
 
                 }else if(i == 1){
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(CreateEvent.this);
-                    View mView = getLayoutInflater().inflate(R.layout.dialogue_date, null);
-                    //showTimePickerDialog(mView);
+                    View mView = getLayoutInflater().inflate(R.layout.dialogue_date_start, null);
+
+                    final DatePicker datePicker = (DatePicker) mView.findViewById(R.id.datePicker);
+                    final TimePicker timePicker = (TimePicker) mView.findViewById(R.id.timePicker);
+                    Button submitStartTime = (Button) mView.findViewById(R.id.submitStart);
+                    submitStartTime.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String date = datePicker.getMonth() + " " + datePicker.getDayOfMonth() + " " + datePicker.getYear();
+                            task[1] = date;
+
+                            String time = timePicker.getHour() + " " + timePicker.getMinute();
+                            task[2] = time;
+
+                        }
+                    });
+
                     mBuilder.setView(mView);
                     AlertDialog dialog = mBuilder.create();
                     dialog.show();
@@ -70,6 +85,21 @@ public class CreateEvent extends AppCompatActivity {
                 }else if(i == 2){
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(CreateEvent.this);
                     View mView = getLayoutInflater().inflate(R.layout.item_name, null);
+
+                    final DatePicker datePicker1 = (DatePicker) mView.findViewById(R.id.datePicker);
+                    final TimePicker timePicker1 = (TimePicker) mView.findViewById(R.id.timePicker);
+                    Button submitStartTime = (Button) mView.findViewById(R.id.submitStart);
+                    submitStartTime.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String date = datePicker1.getMonth() + " " + datePicker1.getDayOfMonth() + " " + datePicker1.getYear();
+                            task[3] = date;
+
+                            String time = timePicker1.getHour() + " " + timePicker1.getMinute();
+                            task[4] = time;
+
+                        }
+                    });
 
                     mBuilder.setView(mView);
                     AlertDialog dialog = mBuilder.create();
@@ -79,29 +109,16 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
 
+        Button createTask = (Button) findViewById(R.id.createTask);
+        createTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                events.add(task);
+            }
+        });
+
 
     }
-
-    public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
-        }
-
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-        }
-    }
-
 
 
 }
