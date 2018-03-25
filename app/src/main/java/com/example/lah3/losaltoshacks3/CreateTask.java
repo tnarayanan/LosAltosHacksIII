@@ -11,7 +11,10 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.lah3.losaltoshacks3.Backend.Homework;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CreateTask extends AppCompatActivity {
 
@@ -25,7 +28,10 @@ public class CreateTask extends AppCompatActivity {
     RatingBar priorityBar;
 
     ConstraintLayout dueDateLayout;
+    Button createTaskButton;
 
+    //{name, time to finish, priority, due date}
+    String[] task = {"", "", "", ""};
 
 
     @Override
@@ -33,12 +39,53 @@ public class CreateTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
 
+
+
+
         taskNameField = (EditText) findViewById(R.id.name);
         timeToComplete = (EditText) findViewById(R.id.timeToComplete);
         dueDate = (TextView) findViewById(R.id.dueDate);
         priorityBar = (RatingBar) findViewById(R.id.priorityBar);
+        createTaskButton = (Button) findViewById(R.id.createTask);
+
+        createTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String taskName  = taskNameField.getText().toString();
+                task[0] = taskName;
+                String timeToFinish = timeToComplete.getText().toString();
+                task[1] = timeToFinish;
+                int priority = priorityBar.getNumStars();
+                task[2] = "" + priority;
+
+                tasksArray.add(task);
+
+
+                Calendar dueDate = Calendar.getInstance();
+                String[] taskDate = task[3].split("/");
+                dueDate.set(Calendar.DAY_OF_MONTH, Integer.parseInt(taskDate[1]));
+                dueDate.set(Calendar.MONTH, Integer.parseInt(taskDate[0]));
+                dueDate.set(Calendar.DAY_OF_MONTH, Integer.parseInt(taskDate[3]));
+
+                dueDate.set(Calendar.MILLISECOND, 0);
+
+                Homework homework = new Homework(task[0], dueDate, Double.parseDouble(task[1]), Integer.parseInt(task[2]));
+
+                homework.createScheduleAroundHW();
+
+
+
+
+
+
+            }
+        });
+
+
 
         dueDateLayout = (ConstraintLayout) findViewById(R.id.startTimeLayout);
+
+
 
         dueDateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +104,7 @@ public class CreateTask extends AppCompatActivity {
                             int day = datePicker.getDayOfMonth();
 
                             String date = month + "/" + day + "/" + year;
-
+                            task[3] = date;
                             dueDate.setText(date);
 
 
