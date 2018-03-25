@@ -2,6 +2,7 @@ package com.example.lah3.losaltoshacks3;
 
 import android.content.Intent;
 import android.graphics.RectF;
+import android.media.MediaDrm;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.alamkanak.weekview.WeekViewLoader;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,8 +31,11 @@ public class WeekViewTest extends AppCompatActivity {
     boolean isOpen = false;
     TextView taskName;
     TextView eventName;
-    WeekView ashish;
+    WeekView eventList;
     List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+
+    final String TAG = "";
+
 
     int times = 0;
 
@@ -98,58 +104,49 @@ public class WeekViewTest extends AppCompatActivity {
         });
 
         Toast.makeText(this, "ashish rao", Toast.LENGTH_LONG).show();
-        ashish = (WeekView)findViewById(R.id.ashish);
 
-        MonthLoader.MonthChangeListener mMonthChangeListener = new MonthLoader.MonthChangeListener() {
+
+        MonthLoader.MonthChangeListener monthChangeListener = new MonthLoader.MonthChangeListener() {
+
             @Override
             public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-                // Populate the week view with some events.
+                if(newMonth == 4){
+                    WeekViewEvent event = new WeekViewEvent(1, "kill ashish", 2018, 3, 25, 0, 0, 2018, 3, 26, 0, 0);
+                    WeekViewEvent event2 = new WeekViewEvent(1, "kill ashish again", 2018, 3, 26, 0, 0, 2018, 3, 27, 0, 0);
 
+                    event.setColor(getResources().getColor(R.color.darkOrange));
 
-
-                if(times > 0) {
+                    events.add(event);
+                    events.add(event2);
+                } else {
                     events.clear();
                 }
 
-
-                WeekViewEvent event = new WeekViewEvent(1, "Kill\nall\nthe\nmoon\nmen" + times, 2018, 3, 25, 0, 0, 2018, 3, 26, 14, 0);
-
-                events.add(event);
-                event.setColor(getResources().getColor(R.color.darkOrange));
-
-                WeekViewEvent event2 = new WeekViewEvent(2, "Kill\n all\n the\n moon\n men\n again" + times, 2018, 3, 26, 15, 0, 2018, 3, 26, 20, 0);
-                events.add(event2);
-                events.add(event);
-
-
-
-
-                times++;
-
-
-                Log.e("times month change", Integer.toString(times));
-                Log.e("Events Size", Integer.toString(events.size()));
-
-
-
-
+                if(newMonth != 4) {
+                    List<WeekViewEvent> blank = new ArrayList<WeekViewEvent>();
+                    return blank;
+                }
                 return events;
+
+
             }
 
         };
 
-        ashish.setMonthChangeListener(mMonthChangeListener);
 
 
-
-
-        ashish.setOnEventClickListener(new WeekView.EventClickListener() {
+        WeekView.EventClickListener eventClickListener = new WeekView.EventClickListener() {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {
-                Toast.makeText(getApplicationContext(), event.getName(), Toast.LENGTH_LONG).show();
                 selectedEvent = event;
+                Intent intent = new Intent(getApplicationContext(), EventDetails.class);
+                startActivity(intent);
             }
-        });
+        };
+
+        eventList = (WeekView)findViewById(R.id.eventList);
+        eventList.setMonthChangeListener(monthChangeListener);
+
 
 
 

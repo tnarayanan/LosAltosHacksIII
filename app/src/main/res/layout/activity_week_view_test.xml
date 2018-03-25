@@ -104,8 +104,9 @@
         android:orientation="horizontal"
         tools:layout_editor_absoluteX="384dp"
         tools:layout_editor_absoluteY="8dp"></LinearLayout>
+
     <com.alamkanak.weekview.WeekView
-        android:id="@+id/ashish"
+        android:id="@+id/eventList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:columnGap="8dp"
@@ -119,7 +120,9 @@
         app:hourHeight="60dp"
         app:noOfVisibleDays="3"
         app:textSize="12sp"
-        app:todayBackgroundColor="#1848adff" />
+        app:todayBackgroundColor="#1848adff"
+
+        />
 
 
 
